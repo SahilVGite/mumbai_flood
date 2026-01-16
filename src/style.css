@@ -1,0 +1,129 @@
+@font-face {
+    font-family: 'Open Sauce Sans';
+    src: url('./assets/fonts/Open-Sauce-Sans-font/OpenSauceSans-ExtraBold.eot');
+    src: local('./assets/fonts/Open-Sauce-Sans-font/Open Sauce Sans ExtraBold'), local('./assets/fonts/Open-Sauce-Sans-font/OpenSauceSans-ExtraBold'),
+        url('./assets/fonts/Open-Sauce-Sans-font/OpenSauceSans-ExtraBold.eot?#iefix') format('embedded-opentype'),
+        url('./assets/fonts/Open-Sauce-Sans-font/OpenSauceSans-ExtraBold.woff2') format('woff2'),
+        url('./assets/fonts/Open-Sauce-Sans-font/OpenSauceSans-ExtraBold.woff') format('woff'),
+        url('./assets/fonts/Open-Sauce-Sans-font/OpenSauceSans-ExtraBold.ttf') format('truetype'),
+        url('./assets/fonts/Open-Sauce-Sans-font/OpenSauceSans-ExtraBold.svg#OpenSauceSans-ExtraBold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Open Sauce Sans';
+    src: url('./assets/fonts/Open-Sauce-Sans-font/OpenSauceSans-Bold.eot');
+    src: local('./assets/fonts/Open-Sauce-Sans-font/Open Sauce Sans Bold'), local('./assets/fonts/Open-Sauce-Sans-font/OpenSauceSans-Bold'),
+        url('./assets/fonts/Open-Sauce-Sans-font/OpenSauceSans-Bold.eot?#iefix') format('embedded-opentype'),
+        url('./assets/fonts/Open-Sauce-Sans-font/OpenSauceSans-Bold.woff2') format('woff2'),
+        url('./assets/fonts/Open-Sauce-Sans-font/OpenSauceSans-Bold.woff') format('woff'),
+        url('./assets/fonts/Open-Sauce-Sans-font/OpenSauceSans-Bold.ttf') format('truetype'),
+        url('./assets/fonts/Open-Sauce-Sans-font/OpenSauceSans-Bold.svg#OpenSauceSans-Bold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Open Sauce Sans';
+    src: url('./assets/fonts/Open-Sauce-Sans-font/OpenSauceSans-Light.eot');
+    src: local('./assets/fonts/Open-Sauce-Sans-font/Open Sauce Sans Light'), local('./assets/fonts/Open-Sauce-Sans-font/OpenSauceSans-Light'),
+        url('./assets/fonts/Open-Sauce-Sans-font/OpenSauceSans-Light.eot?#iefix') format('embedded-opentype'),
+        url('./assets/fonts/Open-Sauce-Sans-font/OpenSauceSans-Light.woff2') format('woff2'),
+        url('./assets/fonts/Open-Sauce-Sans-font/OpenSauceSans-Light.woff') format('woff'),
+        url('./assets/fonts/Open-Sauce-Sans-font/OpenSauceSans-Light.ttf') format('truetype'),
+        url('./assets/fonts/Open-Sauce-Sans-font/OpenSauceSans-Light.svg#OpenSauceSans-Light') format('svg');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Open Sauce Sans';
+    src: url('./assets/fonts/Open-Sauce-Sans-font/OpenSauceSans-Medium.eot');
+    src: local('./assets/fonts/Open-Sauce-Sans-font/Open Sauce Sans Medium'), local('./assets/fonts/Open-Sauce-Sans-font/OpenSauceSans-Medium'),
+        url('./assets/fonts/Open-Sauce-Sans-font/OpenSauceSans-Medium.eot?#iefix') format('embedded-opentype'),
+        url('./assets/fonts/Open-Sauce-Sans-font/OpenSauceSans-Medium.woff2') format('woff2'),
+        url('./assets/fonts/Open-Sauce-Sans-font/OpenSauceSans-Medium.woff') format('woff'),
+        url('./assets/fonts/Open-Sauce-Sans-font/OpenSauceSans-Medium.ttf') format('truetype'),
+        url('./assets/fonts/Open-Sauce-Sans-font/OpenSauceSans-Medium.svg#OpenSauceSans-Medium') format('svg');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Open Sauce Sans';
+    src: url('./assets/fonts/Open-Sauce-Sans-font/OpenSauceSans-Black.eot');
+    src: local('./assets/fonts/Open-Sauce-Sans-font/Open Sauce Sans Black'), local('./assets/fonts/Open-Sauce-Sans-font/OpenSauceSans-Black'),
+        url('./assets/fonts/Open-Sauce-Sans-font/OpenSauceSans-Black.eot?#iefix') format('embedded-opentype'),
+        url('./assets/fonts/Open-Sauce-Sans-font/OpenSauceSans-Black.woff2') format('woff2'),
+        url('./assets/fonts/Open-Sauce-Sans-font/OpenSauceSans-Black.woff') format('woff'),
+        url('./assets/fonts/Open-Sauce-Sans-font/OpenSauceSans-Black.ttf') format('truetype'),
+        url('./assets/fonts/Open-Sauce-Sans-font/OpenSauceSans-Black.svg#OpenSauceSans-Black') format('svg');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Open Sauce Sans';
+    src: url('./assets/fonts/Open-Sauce-Sans-font/OpenSauceSans-SemiBold.eot');
+    src: local('./assets/fonts/Open-Sauce-Sans-font/Open Sauce Sans SemiBold'), local('./assets/fonts/Open-Sauce-Sans-font/OpenSauceSans-SemiBold'),
+        url('./assets/fonts/Open-Sauce-Sans-font/OpenSauceSans-SemiBold.eot?#iefix') format('embedded-opentype'),
+        url('./assets/fonts/Open-Sauce-Sans-font/OpenSauceSans-SemiBold.woff2') format('woff2'),
+        url('./assets/fonts/Open-Sauce-Sans-font/OpenSauceSans-SemiBold.woff') format('woff'),
+        url('./assets/fonts/Open-Sauce-Sans-font/OpenSauceSans-SemiBold.ttf') format('truetype'),
+        url('./assets/fonts/Open-Sauce-Sans-font/OpenSauceSans-SemiBold.svg#OpenSauceSans-SemiBold') format('svg');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Open Sauce Sans';
+    src: url('./assets/fonts/Open-Sauce-Sans-font/OpenSauceSans-Regular.eot');
+    src: local('./assets/fonts/Open-Sauce-Sans-font/Open Sauce Sans Regular'), local('./assets/fonts/Open-Sauce-Sans-font/OpenSauceSans-Regular'),
+        url('./assets/fonts/Open-Sauce-Sans-font/OpenSauceSans-Regular.eot?#iefix') format('embedded-opentype'),
+        url('./assets/fonts/Open-Sauce-Sans-font/OpenSauceSans-Regular.woff2') format('woff2'),
+        url('./assets/fonts/Open-Sauce-Sans-font/OpenSauceSans-Regular.woff') format('woff'),
+        url('./assets/fonts/Open-Sauce-Sans-font/OpenSauceSans-Regular.ttf') format('truetype'),
+        url('./assets/fonts/Open-Sauce-Sans-font/OpenSauceSans-Regular.svg#OpenSauceSans-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+:root {
+  --font-primary: 'Open Sauce Sans', sans-serif;
+
+  /* Font weights */
+  --fw-light: 300;
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+  --fw-extrabold: 800;
+  --fw-black: 900;
+
+  /* Colors */
+  --black-base: 0, 0, 0;
+  --black-10: rgba(var(--black-base), 0.1);
+  --black-30: rgba(var(--black-base), 0.3);
+  --black-50: rgba(var(--black-base), 0.5);
+  --black-70: rgba(var(--black-base), 0.7);
+  --black-80: rgba(var(--black-base), 0.8);
+  --black-90: rgba(var(--black-base), 0.9);
+  --red-base: 247, 0, 8;
+  --red-10: rgba(var(--red-base), 0.1);
+  --red-15: rgba(var(--red-base), 0.15);
+  --red-30: rgba(var(--red-base), 0.30);
+  --red-50: rgba(var(--red-base), 0.50);
+  --red-70: rgba(var(--red-base), 0.70);
+  --blue: #326AFD;
+  --light-blue: #8DADFF;
+}
+
+body{font-family: var(--font-primary);}

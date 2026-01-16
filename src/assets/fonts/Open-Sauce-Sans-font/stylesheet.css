@@ -1,0 +1,98 @@
+@font-face {
+    font-family: 'Open Sauce Sans';
+    src: url('OpenSauceSans-ExtraBold.eot');
+    src: local('Open Sauce Sans ExtraBold'), local('OpenSauceSans-ExtraBold'),
+        url('OpenSauceSans-ExtraBold.eot?#iefix') format('embedded-opentype'),
+        url('OpenSauceSans-ExtraBold.woff2') format('woff2'),
+        url('OpenSauceSans-ExtraBold.woff') format('woff'),
+        url('OpenSauceSans-ExtraBold.ttf') format('truetype'),
+        url('OpenSauceSans-ExtraBold.svg#OpenSauceSans-ExtraBold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Open Sauce Sans';
+    src: url('OpenSauceSans-Bold.eot');
+    src: local('Open Sauce Sans Bold'), local('OpenSauceSans-Bold'),
+        url('OpenSauceSans-Bold.eot?#iefix') format('embedded-opentype'),
+        url('OpenSauceSans-Bold.woff2') format('woff2'),
+        url('OpenSauceSans-Bold.woff') format('woff'),
+        url('OpenSauceSans-Bold.ttf') format('truetype'),
+        url('OpenSauceSans-Bold.svg#OpenSauceSans-Bold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Open Sauce Sans';
+    src: url('OpenSauceSans-Light.eot');
+    src: local('Open Sauce Sans Light'), local('OpenSauceSans-Light'),
+        url('OpenSauceSans-Light.eot?#iefix') format('embedded-opentype'),
+        url('OpenSauceSans-Light.woff2') format('woff2'),
+        url('OpenSauceSans-Light.woff') format('woff'),
+        url('OpenSauceSans-Light.ttf') format('truetype'),
+        url('OpenSauceSans-Light.svg#OpenSauceSans-Light') format('svg');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Open Sauce Sans';
+    src: url('OpenSauceSans-Medium.eot');
+    src: local('Open Sauce Sans Medium'), local('OpenSauceSans-Medium'),
+        url('OpenSauceSans-Medium.eot?#iefix') format('embedded-opentype'),
+        url('OpenSauceSans-Medium.woff2') format('woff2'),
+        url('OpenSauceSans-Medium.woff') format('woff'),
+        url('OpenSauceSans-Medium.ttf') format('truetype'),
+        url('OpenSauceSans-Medium.svg#OpenSauceSans-Medium') format('svg');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Open Sauce Sans';
+    src: url('OpenSauceSans-Black.eot');
+    src: local('Open Sauce Sans Black'), local('OpenSauceSans-Black'),
+        url('OpenSauceSans-Black.eot?#iefix') format('embedded-opentype'),
+        url('OpenSauceSans-Black.woff2') format('woff2'),
+        url('OpenSauceSans-Black.woff') format('woff'),
+        url('OpenSauceSans-Black.ttf') format('truetype'),
+        url('OpenSauceSans-Black.svg#OpenSauceSans-Black') format('svg');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Open Sauce Sans';
+    src: url('OpenSauceSans-SemiBold.eot');
+    src: local('Open Sauce Sans SemiBold'), local('OpenSauceSans-SemiBold'),
+        url('OpenSauceSans-SemiBold.eot?#iefix') format('embedded-opentype'),
+        url('OpenSauceSans-SemiBold.woff2') format('woff2'),
+        url('OpenSauceSans-SemiBold.woff') format('woff'),
+        url('OpenSauceSans-SemiBold.ttf') format('truetype'),
+        url('OpenSauceSans-SemiBold.svg#OpenSauceSans-SemiBold') format('svg');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Open Sauce Sans';
+    src: url('OpenSauceSans-Regular.eot');
+    src: local('Open Sauce Sans Regular'), local('OpenSauceSans-Regular'),
+        url('OpenSauceSans-Regular.eot?#iefix') format('embedded-opentype'),
+        url('OpenSauceSans-Regular.woff2') format('woff2'),
+        url('OpenSauceSans-Regular.woff') format('woff'),
+        url('OpenSauceSans-Regular.ttf') format('truetype'),
+        url('OpenSauceSans-Regular.svg#OpenSauceSans-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
