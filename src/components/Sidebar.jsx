@@ -9,6 +9,7 @@ import {
   InfoIcon,
   Language,
 } from "@/assets/svg";
+import { Link } from "react-router";
 
 const Sidebar = ({ sidebarOpen, setSidebarOpen, informative, pageTogglers }) => {
   return (
@@ -24,7 +25,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen, informative, pageTogglers }) => 
         </div>
         <div className="pageTogglers flex flex-col justify-center items-center gap-8">
           {pageTogglers.map((toggler, index) => (
-            <div
+            <Link
+            to={`${toggler.path}`}
               key={index}
               className="toggler w-full bg-black rounded-lg cursor-pointer transition-colors flex items-center justify-start gap-1 group relative"
             >
@@ -42,7 +44,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen, informative, pageTogglers }) => 
                   <span className="absolute opacity-0 group-hover:opacity-100 left-0 group-hover:left-19 top-1/2 -translate-y-1/2 z-3 rotate-45 bg-black w-3 h-3 pointer-events-none transition-all" />
                 </>
               )}
-            </div>
+            </Link>
           ))}
         </div>
         <div

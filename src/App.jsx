@@ -10,6 +10,9 @@ import UserInteractions from "./components/UserInteractions";
 import { Map, Source, Layer } from "react-map-gl/maplibre";
 import "maplibre-gl/dist/maplibre-gl.css";
 
+import FloodModel from "./components/FloodModel";
+import ModelData from "./components/ModelData";
+
 function App() {
   const mapRef = useRef(null);
   // console.log("MapControls:", MapControls);
@@ -70,9 +73,7 @@ function App() {
           }
         >
           <UserInteractions />
-          <Routes>
-            <Route path="/" element={<div></div>} />
-          </Routes>
+
           <div className="mapContent">
             <Card className="w-full h-screen p-0 overflow-hidden">
               <Map

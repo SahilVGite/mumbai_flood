@@ -1,29 +1,37 @@
 import { SideBar } from "@/assets/svg";
 import React, { useEffect, useState } from "react";
+import { Routes, Route } from "react-router-dom";
 import {
-  FloodModel,
-  Rainfall,
-  WaterLevel,
+  FloodModel as FloodModelIcon,
+  Rainfall as RainfallIcon,
+  WaterLevel as WaterLevelIcon,
   RailwayIcon,
   FloodReportIcon,
   InfoIcon,
   Language,
 } from "@/assets/svg";
 import Sidebar from "./Sidebar";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import ReportCard from "./ReportCard";
 import RainfallForecast from "./RainfallForecast";
+import ModelData from "./ModelData";
+import FloodModel from "./FloodModel";   // your page component
+import path from "node:path";
+import RainfallModel from "./RainfallModel";
+import WaterLevelModel from "./WaterLevelModel";
+import TransportStressModel from "./TransportStressModel";
+
 
 const UserInteractions = () => {
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const pageTogglers = [
-    { name: "Flood Model", icon: FloodModel },
-    { name: "Rainfall", icon: Rainfall },
-    { name: "Water Level", icon: WaterLevel },
-    { name: "Transport Stress", icon: RailwayIcon },
-    { name: "Report Flood", icon: FloodReportIcon },
+    { name: "Flood Model", icon: FloodModelIcon, path: "/" },
+    { name: "Rainfall", icon: RainfallIcon, path: "/rainfall" },
+    { name: "Water Level", icon: WaterLevelIcon, path: "/water-level" },
+    { name: "Transport Stress", icon: RailwayIcon, path: "/transport-stress" },
+    { name: "Report Flood", icon: FloodReportIcon, path: "/report-flood" },
   ];
 
   const informative = [
@@ -48,9 +56,14 @@ const UserInteractions = () => {
           <div className={`absolute top-4 bg-(--blue) text-white font-bold text-2xl p-2.5 w-full max-w-187.5 text-center rounded-[12px] ${sidebarOpen ? "left-61.5" : "left-30"}`}>Mumbai Flood Experiment</div>
           <div className={`NextToSidebar absolute top-1/2 -translate-y-1/2 w-full ${sidebarOpen ? "left-61.5" : "left-30"}`}>
             <div className="relative w-full max-w-187.5">
-              <div className="px-8 py-9 text-white w-full h-fit max-h-[80dvh] overflow-y-auto overflow-x-hidden bg-(--black-70) rounded-xl pointer-events-auto">
-                Main Content
-              </div>
+              <Routes>
+                <Route element={<ModelData />}>
+                  <Route index element={<FloodModel />} />
+                  <Route path="/rainfall" element={<RainfallModel />} />
+                  <Route path="/water-level" element={<WaterLevelModel />} />
+                  <Route path="/transport-stress" element={<TransportStressModel />} />
+                </Route>
+              </Routes>
               <RainfallForecast RainfallForecastData={RainfallForecastData} />
             </div>
           </div>
