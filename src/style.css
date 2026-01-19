@@ -114,6 +114,7 @@
   --black-30: rgba(var(--black-base), 0.3);
   --black-50: rgba(var(--black-base), 0.5);
   --black-70: rgba(var(--black-base), 0.7);
+  --black-75: rgba(var(--black-base), 0.75);
   --black-80: rgba(var(--black-base), 0.8);
   --black-90: rgba(var(--black-base), 0.9);
   --red-base: 247, 0, 8;
@@ -127,3 +128,23 @@
 }
 
 body{font-family: var(--font-primary);}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--light-blue); 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--light-blue); 
+}

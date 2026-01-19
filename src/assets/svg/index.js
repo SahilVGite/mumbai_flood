@@ -6,6 +6,7 @@ import Language from "./Language";
 import RailwayIcon from "./RailwayIcon";
 import Rainfall from "./Rainfall";
 import WaterLevel from "./WaterLevel";
+import RoundLocation from "./RoundLocation";
 
 export{
     SideBar,
@@ -16,4 +17,5 @@ export{
     RailwayIcon,
     Rainfall,
     WaterLevel,
+    RoundLocation,
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-import RainfallChart from "../components/RainfallChart";
+import RainfallChart from "../Charts/RainfallChart";
 
   const floodHourlyData = [
     { time: "04:00", observed: 40, forecast: 42 },
