@@ -212,6 +212,7 @@ export default function MapView() {
   const location = useLocation();
   const { selectedStation } = useMapContext();
   const [selectedPoint, setSelectedPoint] = useState(null);
+  const [isMapLoaded, setIsMapLoaded] = useState(false);
 
   const mapDatasets = {
     floodPoints,
@@ -224,41 +225,40 @@ export default function MapView() {
   const activeData = mapDatasets[currentMode.dataKey];
 
   // Fly to selected dropdown station
-  useEffect(() => {
-    if (!selectedStation) return;
+useEffect(() => {
+  if (!selectedStation || !isMapLoaded || !mapRef.current) return;
 
-    const feature = waterPoints.features.find(
-      (f) => f.properties.id === selectedStation,
-    );
+  const feature = waterPoints.features.find(
+    (f) => f.properties.id === selectedStation
+  );
 
-    if (feature && mapRef.current) {
-      setSelectedPoint(feature);
+  if (!feature) return;
 
-      const map = mapRef.current.getMap();
+  setSelectedPoint(feature);
 
-      // Responsive offset
-      const isSmallScreen = window.innerWidth <= 1100;
+  const map = mapRef.current.getMap();
+  const isSmallScreen = window.innerWidth <= 1100;
 
-      const screenOffsetX = isSmallScreen ? -20 : -120; // mobile: slight shift, desktop: strong shift
-      const screenOffsetY = 0;
+  const screenOffsetX = isSmallScreen ? -20 : -120;
+  const screenOffsetY = 0;
 
-      const point = map.project(feature.geometry.coordinates);
-      const shiftedPoint = {
-        x: point.x + screenOffsetX,
-        y: point.y + screenOffsetY,
-      };
+  const point = map.project(feature.geometry.coordinates);
+  const shiftedPoint = {
+    x: point.x + screenOffsetX,
+    y: point.y + screenOffsetY,
+  };
 
-      const shiftedLngLat = map.unproject(shiftedPoint);
+  const shiftedLngLat = map.unproject(shiftedPoint);
 
-      map.flyTo({
-        center: shiftedLngLat,
-        zoom: isSmallScreen ? 12 : 13, // small screen → zoomed out, desktop → closer
-        speed: 0.9,
-        curve: 1.2,
-        essential: true,
-      });
-    }
-  }, [selectedStation]);
+  map.flyTo({
+    center: shiftedLngLat,
+    zoom: isSmallScreen ? 12 : 13,
+    speed: 0.9,
+    curve: 1.2,
+    essential: true,
+  });
+}, [selectedStation, isMapLoaded]);
+
 
   useEffect(() => {
     // Whenever route changes away from Water Level, clear popup
@@ -322,19 +322,21 @@ export default function MapView() {
       minZoom={9}
       maxZoom={15}
       onLoad={(e) => {
-        const map = e.target;
+    setIsMapLoaded(true);
 
-        if (!map.hasImage("square")) {
-          const size = 20;
-          const data = new Uint8Array(size * size * 4).fill(255);
+    const map = e.target;
 
-          map.addImage(
-            "square",
-            { width: size, height: size, data },
-            { sdf: true },
-          );
-        }
-      }}
+    if (!map.hasImage("square")) {
+      const size = 20;
+      const data = new Uint8Array(size * size * 4).fill(255);
+
+      map.addImage(
+        "square",
+        { width: size, height: size, data },
+        { sdf: true }
+      );
+    }
+  }}
     >
       <Source id="dynamic" type="geojson" data={activeData}>
         {currentMode.dataKey === "floodPoints" && (

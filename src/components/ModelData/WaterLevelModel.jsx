@@ -4,6 +4,7 @@ import { WaterLevel as WaterLevelIcon, RoundLocation } from "@/assets/svg";
 import { ChevronDown } from "lucide-react";
 import { useMapContext } from "@/context/MapContext";
 import { waterPoints } from "@/components/MapView";
+import { useOutletContext } from "react-router-dom";
 
 const floodHourlyData = [
   { time: "04:00", observed: 40, forecast: 42 },
@@ -33,6 +34,8 @@ const waterLevelData = [
 const WaterLevelModel = () => {
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
+
+  const { setIsDataVisible } = useOutletContext();
 
   const { setSelectedStation } = useMapContext();
 
@@ -64,14 +67,17 @@ const WaterLevelModel = () => {
     return () => clearInterval(interval);
   }, []);
 
-  
-
   return (
     <>
       {/* Header */}
       <div className="flex items-center">
-        <WaterLevelIcon strokeColor="#ffffff" className="max-w-9.5 md:max-w-9.8" />
-        <h2 className="text-[18px] md:text-[20px] [@media(min-width:1700px)]:text-2xl font-semibold">Water Level</h2>
+        <WaterLevelIcon
+          strokeColor="#ffffff"
+          className="max-w-9.5 md:max-w-9.8"
+        />
+        <h2 className="text-[18px] md:text-[20px] [@media(min-width:1700px)]:text-2xl font-semibold">
+          Water Level
+        </h2>
       </div>
 
       <div className="my-2.5 lg:my-4">
@@ -80,10 +86,15 @@ const WaterLevelModel = () => {
             <li className="relative md:w-[50%]">
               <label htmlFor="">
                 <select
-                  onChange={(e) => setSelectedStation(e.target.value)}
+                  onChange={(e) => {
+                    setSelectedStation(e.target.value);
+                    setIsDataVisible(false);
+                  }}
                   className="bg-(--black-75) text-white text-[12px] md:text-[14px] [@media(min-width:1700px)]:text-[16px] font-medium outline-none border-none py-2 pl-4 pr-8 rounded-[8px] appearance-none w-full truncate"
                 >
-                  <option value="" selected disabled>Select Area</option>
+                  <option value="" selected disabled>
+                    Select Area
+                  </option>
                   {waterPoints.features.map((f) => (
                     <option key={f.properties.id} value={f.properties.id}>
                       {f.properties.name}

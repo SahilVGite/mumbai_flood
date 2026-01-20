@@ -11,7 +11,7 @@ const ModelData = () => {
       <div className="[@media(min-width:1201px)]:hidden flex justify-center">
         <ChevronUp className={`text-[#8C8C8C] w-5 md:w-8 h-auto font-bold ${isDataVisible ? "rotate-180" : ""}`} onClick={() => setIsDataVisible(!isDataVisible)} />
       </div>
-      <Outlet />
+      <Outlet context={{ setIsDataVisible }} />
     </div>
   );
 };
