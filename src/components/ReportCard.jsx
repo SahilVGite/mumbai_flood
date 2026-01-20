@@ -3,7 +3,7 @@ import { Link } from "react-router";
 
 const ReportCard = () => {
   return (
-    <div className="[@media(min-width:1201px)]:p-0.5 [@media(min-width:1201px)]:bg-[#E8CBBC] [@media(min-width:1201px)]:rounded-2xl [@media(min-width:1201px)]:bg-[radial-gradient(ellipse_at_top_left,#FFE9EA,#F7000880)] pointer-events-auto max-w-fit [@media(min-width:1201px)]:max-w-100 w-full text-center">
+    <div className="[@media(min-width:1201px)]:p-0.5 [@media(min-width:1201px)]:bg-[#E8CBBC] [@media(min-width:1201px)]:rounded-2xl [@media(min-width:1201px)]:bg-[radial-gradient(ellipse_at_top_left,#FFE9EA,#F7000880)] pointer-events-auto max-w-fit [@media(min-width:1201px)]:max-w-90 [@media(min-width:1400px)]:max-w-100 w-full text-center">
       <div className="[@media(min-width:1201px)]:py-4 [@media(min-width:1700px)]:py-6.25 [@media(min-width:1201px)]:px-3 [@media(min-width:1700px)]:px-4 [@media(min-width:1201px)]:bg-[#E8CBBC] [@media(min-width:1201px)]:rounded-[15px]">
         <h5 className="[@media(max-width:1100px)]:hidden font-medium text-[20px] [@media(min-width:1700px)]:text-2xl text-black mb-2">
           Spotted flooding in your area?

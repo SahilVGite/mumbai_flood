@@ -80,7 +80,7 @@ const UserInteractions = () => {
                   />
                 </Route>
               </Routes>
-              <div className="[@media(max-width:1100px)]:hidden [@media(min-width:1201px)]:absolute left-2 [@media(min-width:1201px)]:left-[calc(100%+16px)] [@media(min-width:1700px)]:left-[calc(100%+32px)] [@media(max-width:1100px)]:top-0 [@media(min-width:1201px)]:bottom-8 [@media(min-width:1700px)]:bottom-14">
+              <div className="absolute left-2 [@media(min-width:1201px)]:left-[calc(100%+16px)] [@media(min-width:1700px)]:left-[calc(100%+32px)] bottom-[calc(100%+15px)] [@media(min-width:1201px)]:bottom-8 [@media(min-width:1700px)]:bottom-14">
                 <RainfallForecast RainfallForecastData={RainfallForecastData} />
               </div>
               <div className="[@media(min-width:1201px)]:hidden absolute bottom-[calc(100%+15px)] right-2 md:right-4 z-10">
