@@ -12,14 +12,14 @@ const RainfallForecast = ({ RainfallForecastData }) => {
   if (!allowedPaths.includes(location.pathname)) return null;
 
   return (
-    <div className="absolute p-5 left-[calc(100%+32px)] bottom-14 bg-black rounded-xl text-[#8C8C8C] w-fit [&>*:not(:last-child)]:mb-4">
+    <div className="p-3 [@media(min-width:1700px)]:p-5 bg-black rounded-xl text-[#8C8C8C] w-fit [&>*:not(:last-child)]:mb-2 [@media(min-width:1700px)]:[&>*:not(:last-child)]:mb-4">
       {RainfallForecastData.map((item) => (
-        <div key={item.id} className="flex items-center gap-4">
+        <div key={item.id} className="flex items-center gap-3 [@media(min-width:1700px)]:gap-4">
           <span
             style={{ backgroundColor: item.color }}
-            className="w-5 h-3 rounded-full"
+            className="w-3 [@media(min-width:1700px)]:w-5 h-2 [@media(min-width:1700px)]:h-3 rounded-full"
           ></span>
-          <p className="whitespace-nowrap text-sm">{item.title}</p>
+          <p className="whitespace-nowrap text-xs [@media(min-width:1700px)]:text-sm">{item.title}</p>
         </div>
       ))}
     </div>

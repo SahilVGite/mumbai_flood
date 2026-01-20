@@ -48,20 +48,19 @@ const FloodModel = () => {
     <>
       {/* Header */}
       <div className="flex items-center">
-        <FloodModelIcon strokeColor="#ffffff" />
-        <h2 className="text-2xl font-semibold">Flood Model</h2>
+        <FloodModelIcon strokeColor="#ffffff" className="max-w-9.5 md:max-w-9.8" />
+        <h2 className="text-[18px] md:text-[20px] [@media(min-width:1700px)]:text-2xl font-semibold">Flood Model</h2>
       </div>
 
-      <div className="my-4">
+      <div className="my-2.5 lg:my-4">
         <form action="">
-          <ul className="flex items-center justify-between">
-            <li className="relative">
+          <ul className="flex items-center justify-between gap-2">
+            <li className="relative md:w-[50%]">
               <label htmlFor="">
                 <select
                   name=""
                   id=""
-                   defaultValue=""
-                  className="bg-(--black-75) text-white text-[16px] font-medium outline-none border-none py-2 pl-4 pr-8 rounded-[8px] appearance-none"
+                  className="bg-(--black-75) text-white text-[12px] md:text-[14px] [@media(min-width:1700px)]:text-[16px] font-medium outline-none border-none py-2 pl-4 pr-8 rounded-[8px] appearance-none w-full truncate"
                 >
                   <option value="current location" selected disabled>
                     Your current location
@@ -74,7 +73,7 @@ const FloodModel = () => {
               </label>
             </li>
             <li>
-              <div className="bg-(--black-75) text-white font-medium text-[16px] py-2 px-7 rounded-[8px] flex gap-6 items-center">
+              <div className="bg-(--black-75) text-white font-medium text-[12px] md:text-[14px] [@media(min-width:1700px)]:text-[16px] py-2 px-5 lg:px-7 rounded-[8px] flex gap-3 md:gap-6 items-center whitespace-nowrap">
                 <span className="Date">{date}</span>
                 <span className="Time">{time}</span>
               </div>
@@ -84,14 +83,14 @@ const FloodModel = () => {
       </div>
 
       {/* Alert */}
-      <div className="bg-(--red-30) text-white text-[16px] px-5 py-4 rounded-lg mb-8">
+      <div className="bg-(--red-30) text-white text-[12px] md:text-[14px] [@media(min-width:1700px)]:text-[16px] px-5 py-4 rounded-lg mb-4 [@media(min-width:1700px)]:mb-8">
         Moderate rainfall expected over the next 3 hrs. Water logging might
         happen in some areas.
       </div>
 
       {/* Severity */}
-      <div className="mb-8">
-        <p className="mb-2 text-white text-[20px] font-medium">
+      <div className="mb-4 [@media(min-width:1700px)]:mb-8">
+        <p className="mb-2 text-white text-sm md:text-lg [@media(min-width:1700px)]:text-[20px] font-medium">
           Flood Severity
         </p>
         <div className="w-full h-3 rounded-full overflow-hidden flex items-center">
@@ -99,7 +98,7 @@ const FloodModel = () => {
           <div className="w-full h-full bg-[#029EFD]" />
           <div className="w-full h-full bg-[#105FCD]" />
         </div>
-        <div className="flex justify-between text-sm mt-1 font-medium text-white">
+        <div className="flex justify-between text-xs md:text-sm mt-1 font-medium text-white">
           <span className="w-full block text-center">Low</span>
           <span className="w-full block text-center">Moderate</span>
           <span className="w-full block text-center">High</span>
@@ -107,12 +106,12 @@ const FloodModel = () => {
       </div>
 
       {/* Chart */}
-      <div className="flex items-center gap-2 mb-2">
-        <h3 className="text-white text-[20px] font-medium flex items-center gap-2">
+      <div className="flex items-center flex-wrap md:flex-nowrap gap-2 mb-2">
+        <h3 className="text-white text-sm md:text-lg [@media(min-width:1700px)]:text-[20px] font-medium flex items-center gap-2 flex-wrap md:flex-nowrap">
           Observed Hourly Rainfall (Today) -{" "}
-          <span className="font-medium text-sm">1 hr interval</span>
+          <span className="font-medium text-xs md:text-sm">1 hr interval</span>
         </h3>
-        <div className="text-[#8C8C8C] text-sm font-medium">
+        <div className="text-[#8C8C8C] text-xs md:text-sm font-medium">
           (data from MCGM)
         </div>
       </div>

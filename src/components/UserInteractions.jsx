@@ -56,7 +56,7 @@ const UserInteractions = () => {
 
   return (
     <>
-      <div className="fixed left-0 top-0 w-full h-full max-h-screen z-10 pointer-events-none">
+      <div className="fixed left-0 top-0 w-full h-full max-h-screen z-10 [@media(max-width:1100px)]:flex [@media(max-width:1100px)]:items-end [@media(max-width:1100px)]:justify-center [@media(max-width:1100px)]:*:w-full pointer-events-none">
         <div className="relative">
           <Sidebar
             sidebarOpen={sidebarOpen}
@@ -64,20 +64,11 @@ const UserInteractions = () => {
             pageTogglers={pageTogglers}
             informative={informative}
           />
-          <div
-            className={`absolute top-4 bg-(--blue) text-white font-bold text-2xl p-2.5 
-  w-full max-w-187.5 text-center rounded-[12px]
-  transition-all duration-300 ease-in-out
-  ${sidebarOpen ? "left-61.5" : "left-30"}`}
-          >
+          <div className={`fixed [@media(min-width:1201px)]:absolute top-2 [@media(min-width:1201px)]:top-4 bg-(--blue) text-white font-bold text-lg [@media(min-width:1700px)]:text-2xl p-2.5 w-auto [@media(min-width:1201px)]:w-full [@media(min-width:1201px)]:max-w-140 [@media(min-width:1700px)]:max-w-187.5 text-center rounded-[12px] transition-all duration-300 ease-in-out [@media(max-width:1100px)]:inset-x-2 ${sidebarOpen ? "[@media(min-width:1201px)]:left-54 [@media(min-width:1700px)]:left-61.5" : "[@media(min-width:1201px)]:left-22 [@media(min-width:1700px)]:left-30"}`}>
             Mumbai Flood Experiment
           </div>
-          <div
-            className={`NextToSidebar absolute top-1/2 -translate-y-1/2 w-full
-  transition-all duration-300 ease-in-out
-  ${sidebarOpen ? "left-61.5" : "left-30"}`}
-          >
-            <div className="relative w-full max-w-187.5">
+          <div className={`NextToSidebar absolute [@media(min-width:1201px)]:top-1/2 [@media(min-width:1201px)]:-translate-y-1/2 w-full transition-all duration-300 ease-in-out [@media(max-width:1100px)]:left-0 [@media(max-width:1100px)]:bottom-0 ${sidebarOpen ? "[@media(min-width:1201px)]:left-54 [@media(min-width:1700px)]:left-61.5" : "[@media(min-width:1201px)]:left-22 [@media(min-width:1700px)]:left-30"}`} >
+            <div className="relative w-full h-auto [@media(min-width:1201px)]:max-w-140 [@media(min-width:1700px)]:max-w-187.5">
               <Routes>
                 <Route element={<ModelData />}>
                   <Route index element={<FloodModel />} />
@@ -89,10 +80,17 @@ const UserInteractions = () => {
                   />
                 </Route>
               </Routes>
-              <RainfallForecast RainfallForecastData={RainfallForecastData} />
+              <div className="[@media(max-width:1100px)]:hidden [@media(min-width:1201px)]:absolute left-2 [@media(min-width:1201px)]:left-[calc(100%+16px)] [@media(min-width:1700px)]:left-[calc(100%+32px)] [@media(max-width:1100px)]:top-0 [@media(min-width:1201px)]:bottom-8 [@media(min-width:1700px)]:bottom-14">
+                <RainfallForecast RainfallForecastData={RainfallForecastData} />
+              </div>
+              <div className="[@media(min-width:1201px)]:hidden absolute bottom-[calc(100%+15px)] right-2 md:right-4 z-10">
+                <ReportCard />
+              </div>
             </div>
           </div>
-          <ReportCard />
+          <div className="[@media(max-width:1100px)]:hidden fixed top-4 [@media(min-width:1700px)]:top-8 right-4 [@media(min-width:1700px)]:right-8 z-10">
+            <ReportCard />
+          </div>
         </div>
       </div>
     </>

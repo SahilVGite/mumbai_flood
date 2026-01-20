@@ -70,20 +70,20 @@ const WaterLevelModel = () => {
     <>
       {/* Header */}
       <div className="flex items-center">
-        <WaterLevelIcon strokeColor="#ffffff" />
-        <h2 className="text-2xl font-semibold">Water Level</h2>
+        <WaterLevelIcon strokeColor="#ffffff" className="max-w-9.5 md:max-w-9.8" />
+        <h2 className="text-[18px] md:text-[20px] [@media(min-width:1700px)]:text-2xl font-semibold">Water Level</h2>
       </div>
 
-      <div className="my-4">
+      <div className="my-2.5 lg:my-4">
         <form action="">
-          <ul className="flex items-center justify-between">
-            <li className="relative">
+          <ul className="flex items-center justify-between gap-2">
+            <li className="relative md:w-[50%]">
               <label htmlFor="">
                 <select
                   onChange={(e) => setSelectedStation(e.target.value)}
-                  className="bg-(--black-75) text-white text-[16px] font-medium outline-none border-none py-2 pl-4 pr-8 rounded-[8px] appearance-none"
+                  className="bg-(--black-75) text-white text-[12px] md:text-[14px] [@media(min-width:1700px)]:text-[16px] font-medium outline-none border-none py-2 pl-4 pr-8 rounded-[8px] appearance-none w-full truncate"
                 >
-                  <option value="">Select water level station</option>
+                  <option value="" selected disabled>Select Area</option>
                   {waterPoints.features.map((f) => (
                     <option key={f.properties.id} value={f.properties.id}>
                       {f.properties.name}
@@ -94,7 +94,7 @@ const WaterLevelModel = () => {
               </label>
             </li>
             <li>
-              <div className="bg-(--black-75) text-white font-medium text-[16px] py-2 px-7 rounded-[8px] flex gap-6 items-center">
+              <div className="bg-(--black-75) text-white font-medium text-[12px] md:text-[14px] [@media(min-width:1700px)]:text-[16px] py-2 px-5 lg:px-7 rounded-[8px] flex gap-3 md:gap-6 items-center whitespace-nowrap">
                 <span className="Date">{date}</span>
                 <span className="Time">{time}</span>
               </div>
@@ -103,15 +103,15 @@ const WaterLevelModel = () => {
         </form>
       </div>
 
-      <div className="text-[16px] text-[#A2A2AA] mb-8">
+      <div className="text-[12px] md:text-[14px] [@media(min-width:1700px)]:text-[16px] text-[#A2A2AA] mb-4 [@media(min-width:1700px)]:mb-8">
         Patare Chawl, Swami Vivekananda Rd, near DCB Bank, Fish Market Area,
         Navneeth Colony, Andheri West, Mumbai, Maharashtra 400058, India
       </div>
 
-      <p className="mb-2 text-white text-[20px] font-medium">
+      <p className="mb-2 text-white text-sm md:text-lg [@media(min-width:1700px)]:text-[20px] font-medium">
         Average Water Level
       </p>
-      <div className="grid grid-cols-4 gap-4 mb-6">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
         {[
           { label: "Last 5 mins", value: "25 cm" },
           { label: "Last 15 mins", value: "27 cm" },
@@ -122,13 +122,13 @@ const WaterLevelModel = () => {
             key={idx}
             className="bg-black p-4 rounded-lg text-center font-medium"
           >
-            <p className="text-lg">{i.value}</p>
-            <p className="text-sm text-[#A2A2AA]">{i.label}</p>
+            <p className="text-sm md:text-lg">{i.value}</p>
+            <p className="text-xs md:text-sm text-[#A2A2AA]">{i.label}</p>
           </div>
         ))}
       </div>
 
-      <p className="mb-2 text-white text-[20px] font-medium">
+      <p className="mb-2 text-white text-sm md:text-lg [@media(min-width:1700px)]:text-[20px] font-medium">
         Water Level for Mithi River
       </p>
       <WaterLevelChart data={waterLevelData} />

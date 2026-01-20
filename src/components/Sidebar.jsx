@@ -19,22 +19,15 @@ const Sidebar = ({
 }) => {
   return (
     <>
-      <div
-        className="sidebar flex gap-4 rounded-r-xl w-full max-w-fit h-full min-h-screen 
-bg-(--black-80) pointer-events-auto flex-col items-center justify-between 
-py-10 px-4 transition-all duration-300 ease-in-out"
-      >
-        <div
-          className={`sidebarToggle ${sidebarOpen ? "w-full" : ""}`}
-          onClick={() => setSidebarOpen(!sidebarOpen)}
-        >
+      <div className="sidebar flex gap-4 [@media(min-width:1201px)]:rounded-r-xl w-full max-w-full [@media(min-width:1201px)]:max-w-fit h-auto [@media(min-width:1201px)]:h-full min-h-auto [@media(min-width:1201px)]:min-h-screen bg-(--black-80) [@media(max-width:1100px)]:backdrop-blur-[7.5px] pointer-events-auto [@media(min-width:1201px)]:flex-col items-center [@media(max-width:1100px)]:overflow-x-auto justify-start md:justify-center [@media(min-width:1201px)]:justify-between py-4 [@media(min-width:1201px)]:py-10 px-3 [@media(min-width:1700px)]:px-4 transition-all duration-300 ease-in-out relative z-30 [@media(max-width:1100px)]:shadow-[0px_-6px_12px_-2px_rgba(50,50,93,0.25),_0px_-3px_7px_-3px_rgba(0,0,0,0.3)]">
+        <div className={`sidebarToggle [@media(max-width:1100px)]:hidden ${sidebarOpen ? "w-full" : ""}`} onClick={() => setSidebarOpen(!sidebarOpen)}>
           <SideBar
             className={`cursor-pointer transition-all duration-300 ease-in-out ${
               sidebarOpen ? "ml-auto" : ""
             }`}
           />
         </div>
-        <div className="pageTogglers flex flex-col justify-center items-center gap-8">
+        <div className="pageTogglers flex [@media(min-width:1201px)]:flex-col justify-center items-center gap-6 [@media(min-width:1700px)]:gap-8">
           {pageTogglers.map((toggler, index) => (
             <NavLink
               key={index}
@@ -43,7 +36,7 @@ py-10 px-4 transition-all duration-300 ease-in-out"
             >
               {({ isActive }) => (
                 <>
-                  <toggler.icon strokeColor={isActive ? "#fff" : "#8DADFF"} />
+                  <toggler.icon strokeColor={isActive ? "#fff" : "#8DADFF"} className="max-w-12 [@media(min-width:1700px)]:max-w-14 h-auto" />
 
                   {sidebarOpen && (
                     <span
@@ -69,7 +62,7 @@ py-10 px-4 transition-all duration-300 ease-in-out"
           ))}
         </div>
         <div
-          className={`flex flex-col justify-center items-center gap-8 ${
+          className={`flex [@media(min-width:1201px)]:flex-col justify-center items-center gap-5 [@media(min-width:1700px)]:gap-8 ${
             sidebarOpen ? "w-full" : ""
           }`}
         >
@@ -77,11 +70,11 @@ py-10 px-4 transition-all duration-300 ease-in-out"
             <NavLink
               to={`${info.path}`}
               key={index}
-              className="toggler w-full cursor-pointer transition-colors flex items-center justify-start gap-3 group relative"
+              className="toggler w-full cursor-pointer transition-colors flex items-center justify-start gap-3 group relative [@media(max-width:1100px)]:bg-black [@media(max-width:1100px)]:rounded-lg p-2"
             >
               {({ isActive }) => (
                 <>
-                  <info.icon strokeColor={isActive ? "#fff" : "#8DADFF"} />
+                  <info.icon strokeColor={isActive ? "#fff" : "#8DADFF"} className="max-w-8 [@media(min-width:1700px)]:max-w-9 h-auto" />
                   {sidebarOpen && (
                     <span
                       className={`font-medium text-sm mr-3 ${
