@@ -236,7 +236,10 @@ export default function MapView() {
 
       const map = mapRef.current.getMap();
 
-      const screenOffsetX = -120; // move marker left (negative = left, positive = right)
+      // Responsive offset
+      const isSmallScreen = window.innerWidth <= 1100;
+
+      const screenOffsetX = isSmallScreen ? -20 : -120; // mobile: slight shift, desktop: strong shift
       const screenOffsetY = 0;
 
       const point = map.project(feature.geometry.coordinates);
@@ -249,7 +252,7 @@ export default function MapView() {
 
       map.flyTo({
         center: shiftedLngLat,
-        zoom: 13,
+        zoom: isSmallScreen ? 12 : 13, // small screen → zoomed out, desktop → closer
         speed: 0.9,
         curve: 1.2,
         essential: true,
@@ -264,27 +267,54 @@ export default function MapView() {
     }
   }, [location.pathname, currentMode.dataKey]);
 
+  const getResponsiveCenter = () => {
+    // Mobile & tablet
+    if (window.innerWidth <= 1100) {
+      return [72.91, 19.13]; // slightly shifted center for small screens
+    }
+
+    // Desktop
+    return [72.6, 19.05];
+  };
+
   useEffect(() => {
     if (!mapRef.current) return;
 
     const map = mapRef.current.getMap();
 
     map.flyTo({
-      center: [72.6, 19.05], // your default Mumbai center
-      zoom: 10.5,
+      center: getResponsiveCenter(), // your default Mumbai center
+      zoom: 9,
       speed: 0.8,
       curve: 1.2,
       essential: true,
     });
   }, [location.pathname]);
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (!mapRef.current) return;
+
+      const map = mapRef.current.getMap();
+      const center = getResponsiveCenter();
+
+      map.easeTo({
+        center,
+        duration: 500,
+      });
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <Map
       ref={mapRef}
       initialViewState={{
-        longitude: 72.6,
-        latitude: 19.05,
-        zoom: 10.5,
+        longitude: getResponsiveCenter()[0],
+        latitude: getResponsiveCenter()[1],
+        zoom: 9,
       }}
       mapStyle="https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json"
       style={{ width: "100%", height: "100vh" }}
