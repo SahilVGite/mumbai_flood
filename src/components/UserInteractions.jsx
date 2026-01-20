@@ -40,7 +40,7 @@ const UserInteractions = () => {
   const RainfallForecastData = [
     {
       id: 1,
-      title: "Extremely Heavy Rainfall (>= 2.4.5 mm)",
+      title: "Extremely Heavy Rainfall (>= 204.5 mm)",
       color: "#F70008",
     },
     {
