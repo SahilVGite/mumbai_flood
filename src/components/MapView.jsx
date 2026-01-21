@@ -4,6 +4,11 @@ import { Map, Source, Layer, Popup } from "react-map-gl/maplibre";
 import "maplibre-gl/dist/maplibre-gl.css";
 import { MAP_MODES } from "../lib/mapConfig";
 import { useMapContext } from "../context/MapContext";
+import {
+  railwayStations,
+  railwayRoutes,
+  RAIL_COLORS,
+} from "../data/railwayData";
 
 const mumbaiCoastalBounds = [
   [71.8, 18.4],
@@ -202,63 +207,140 @@ export const waterPoints = {
   ],
 };
 
+export const rainfallPoints = {
+  type: "FeatureCollection",
+  features: [
+    {
+      type: "Feature",
+      properties: {
+        id: "andheri",
+        name: "Andheri West",
+      },
+      geometry: { type: "Point", coordinates: [72.831541, 19.157407] },
+    },
+    {
+      type: "Feature",
+      properties: {
+        id: "jogeshwari",
+        name: "Jogeshwari East",
+      },
+      geometry: { type: "Point", coordinates: [72.828876, 19.137796] },
+    },
+    {
+      type: "Feature",
+      properties: {
+        id: "goregaon",
+        name: "Goregaon West",
+      },
+      geometry: { type: "Point", coordinates: [72.824531, 19.121093] },
+    },
+    {
+      type: "Feature",
+      properties: {
+        id: "borivali",
+        name: "Borivali West",
+      },
+      geometry: { type: "Point", coordinates: [72.852859, 19.235172] },
+    },
+    {
+      type: "Feature",
+      properties: {
+        id: "malad",
+        name: "Malad East",
+      },
+      geometry: { type: "Point", coordinates: [72.850205, 19.184665] },
+    },
+    {
+      type: "Feature",
+      properties: {
+        id: "valnai",
+        name: "Valnai",
+      },
+      geometry: { type: "Point", coordinates: [72.812245, 19.190936] },
+    },
+    {
+      type: "Feature",
+      properties: {
+        id: "powai",
+        name: "Powai",
+      },
+      geometry: { type: "Point", coordinates: [72.905665, 19.113074] },
+    },
+    {
+      type: "Feature",
+      properties: {
+        id: "kurla",
+        name: "Kurla West",
+      },
+      geometry: { type: "Point", coordinates: [72.878238, 19.073516] },
+    },
+  ],
+};
+
 // later you’ll add these
-const rainfallPoints = { type: "FeatureCollection", features: [] };
+// const rainfallPoints = { type: "FeatureCollection", features: [] };
 // const waterPoints = { type: "FeatureCollection", features: [] };
 const transportPoints = { type: "FeatureCollection", features: [] };
 
 export default function MapView() {
   const mapRef = useRef(null);
   const location = useLocation();
-  const { selectedStation } = useMapContext();
+  const { selectedStation, setSelectedStation } = useMapContext();
   const [selectedPoint, setSelectedPoint] = useState(null);
   const [isMapLoaded, setIsMapLoaded] = useState(false);
+  const selectedRouteId = selectedPoint?.properties?.route;
 
   const mapDatasets = {
     floodPoints,
     rainfallPoints,
     waterPoints,
-    transportPoints,
+    transportPoints: railwayStations,
   };
 
   const currentMode = MAP_MODES[location.pathname] || MAP_MODES["/"];
   const activeData = mapDatasets[currentMode.dataKey];
 
   // Fly to selected dropdown station
-useEffect(() => {
-  if (!selectedStation || !isMapLoaded || !mapRef.current) return;
+  useEffect(() => {
+    if (!selectedStation || !isMapLoaded || !mapRef.current) return;
 
-  const feature = waterPoints.features.find(
-    (f) => f.properties.id === selectedStation
-  );
+    const dataset =
+      currentMode.dataKey === "waterPoints"
+        ? waterPoints
+        : currentMode.dataKey === "rainfallPoints"
+          ? rainfallPoints
+          : currentMode.dataKey === "transportPoints"
+            ? railwayStations
+            : null;
 
-  if (!feature) return;
+    if (!dataset) return;
 
-  setSelectedPoint(feature);
+    const feature = dataset.features.find(
+      (f) => f.properties.id === selectedStation,
+    );
 
-  const map = mapRef.current.getMap();
-  const isSmallScreen = window.innerWidth <= 1100;
+    if (!feature) return;
 
-  const screenOffsetX = isSmallScreen ? -20 : -120;
-  const screenOffsetY = 0;
+    setSelectedPoint(feature);
 
-  const point = map.project(feature.geometry.coordinates);
-  const shiftedPoint = {
-    x: point.x + screenOffsetX,
-    y: point.y + screenOffsetY,
-  };
+    const map = mapRef.current.getMap();
+    const isSmallScreen = window.innerWidth <= 1100;
+    const screenOffsetX = isSmallScreen ? -20 : -120;
 
-  const shiftedLngLat = map.unproject(shiftedPoint);
+    const point = map.project(feature.geometry.coordinates);
+    const shiftedLngLat = map.unproject({
+      x: point.x + screenOffsetX,
+      y: point.y,
+    });
 
-  map.flyTo({
-    center: shiftedLngLat,
-    zoom: isSmallScreen ? 12 : 13,
-    speed: 0.9,
-    curve: 1.2,
-    essential: true,
-  });
-}, [selectedStation, isMapLoaded]);
-
+    map.flyTo({
+      center: shiftedLngLat,
+      zoom: isSmallScreen ? 12 : 13,
+      speed: 0.9,
+      curve: 1.2,
+      essential: true,
+    });
+  }, [selectedStation, isMapLoaded, currentMode.dataKey]);
 
   useEffect(() => {
     // Whenever route changes away from Water Level, clear popup
@@ -278,12 +360,17 @@ useEffect(() => {
   };
 
   useEffect(() => {
+    // On every route change:
+    setSelectedPoint(null); // close popup
+    setSelectedStation(null); // deselect dropdown value
+
+    // Reset map only if no station is selected
     if (!mapRef.current) return;
 
     const map = mapRef.current.getMap();
 
     map.flyTo({
-      center: getResponsiveCenter(), // your default Mumbai center
+      center: getResponsiveCenter(),
       zoom: 9,
       speed: 0.8,
       curve: 1.2,
@@ -322,22 +409,75 @@ useEffect(() => {
       minZoom={9}
       maxZoom={15}
       onLoad={(e) => {
-    setIsMapLoaded(true);
+        setIsMapLoaded(true);
 
-    const map = e.target;
+        const map = e.target;
 
-    if (!map.hasImage("square")) {
-      const size = 20;
-      const data = new Uint8Array(size * size * 4).fill(255);
+        if (!map.hasImage("square")) {
+          const size = 20;
+          const data = new Uint8Array(size * size * 4).fill(255);
 
-      map.addImage(
-        "square",
-        { width: size, height: size, data },
-        { sdf: true }
-      );
-    }
-  }}
+          map.addImage(
+            "square",
+            { width: size, height: size, data },
+            { sdf: true },
+          );
+        }
+      }}
     >
+      {currentMode.dataKey === "transportPoints" && !selectedPoint && (
+        <Source id="rail-routes-all" type="geojson" data={railwayRoutes}>
+          <Layer
+            id="railway-routes-all"
+            type="line"
+            paint={{
+              "line-width": 6,
+              "line-color": [
+                "match",
+                ["get", "id"],
+                "western",
+                RAIL_COLORS.western,
+                "central",
+                RAIL_COLORS.central,
+                "#ffffff",
+              ],
+              "line-opacity": 0.35,
+            }}
+          />
+        </Source>
+      )}
+
+      {currentMode.dataKey === "transportPoints" && selectedPoint && (
+        <Source
+          id="rail-route-single"
+          type="geojson"
+          data={{
+            type: "FeatureCollection",
+            features: railwayRoutes.features.filter(
+              (r) => r.properties.id === selectedPoint.properties.line,
+            ),
+          }}
+        >
+          <Layer
+            id="railway-route-single"
+            type="line"
+            paint={{
+              "line-width": 6,
+              "line-color": [
+                "match",
+                ["get", "id"],
+                "western",
+                RAIL_COLORS.western,
+                "central",
+                RAIL_COLORS.central,
+                "#ffffff",
+              ],
+              "line-opacity": 0.5,
+            }}
+          />
+        </Source>
+      )}
+
       <Source id="dynamic" type="geojson" data={activeData}>
         {currentMode.dataKey === "floodPoints" && (
           <Layer
@@ -384,7 +524,7 @@ useEffect(() => {
             filter={["!=", ["get", "id"], selectedPoint?.properties?.id || ""]}
             paint={{
               "circle-radius": 6,
-              "circle-color": "#2563EB",
+              "circle-color": "#326AFD",
             }}
             onClick={(e) => {
               const feature = e.features[0];
@@ -402,7 +542,7 @@ useEffect(() => {
             filter={["==", ["get", "id"], selectedPoint.properties.id]}
             paint={{
               "circle-radius": 10,
-              "circle-color": "#2563EB",
+              "circle-color": "#326AFD",
               "circle-opacity": 1,
             }}
           />
@@ -417,7 +557,7 @@ useEffect(() => {
             filter={["==", ["get", "id"], selectedPoint.properties.id]}
             paint={{
               "circle-radius": 10,
-              "circle-color": "#2563EB",
+              "circle-color": "#326AFD",
             }}
           />
         )}
@@ -435,25 +575,149 @@ useEffect(() => {
             }}
           />
         )}
+
+        {/* NORMAL RAINFALL MARKERS */}
+        {currentMode.dataKey === "rainfallPoints" && (
+          <Layer
+            id="rainfall-normal"
+            source="dynamic"
+            type="circle"
+            filter={["!=", ["get", "id"], selectedPoint?.properties?.id || ""]}
+            paint={{
+              "circle-radius": 6,
+              "circle-color": "#326AFD",
+            }}
+            onClick={(e) => {
+              const feature = e.features[0];
+              setSelectedPoint(feature);
+            }}
+          />
+        )}
+
+        {/* SELECTED RAINFALL GLOW */}
+        {currentMode.dataKey === "rainfallPoints" && selectedPoint && (
+          <Layer
+            id="rainfall-glow"
+            source="dynamic"
+            type="circle"
+            filter={["==", ["get", "id"], selectedPoint.properties.id]}
+            paint={{
+              "circle-radius": 10,
+              "circle-color": "#326AFD",
+              "circle-opacity": 1,
+            }}
+          />
+        )}
+
+        {/* SELECTED RAINFALL BORDER */}
+        {currentMode.dataKey === "rainfallPoints" && selectedPoint && (
+          <Layer
+            id="rainfall-border"
+            source="dynamic"
+            type="circle"
+            filter={["==", ["get", "id"], selectedPoint.properties.id]}
+            paint={{
+              "circle-radius": 8,
+              "circle-color": "#326AFD",
+            }}
+          />
+        )}
+
+        {/* SELECTED RAINFALL CENTER */}
+        {currentMode.dataKey === "rainfallPoints" && selectedPoint && (
+          <Layer
+            id="rainfall-center"
+            source="dynamic"
+            type="circle"
+            filter={["==", ["get", "id"], selectedPoint.properties.id]}
+            paint={{
+              "circle-radius": 4,
+              "circle-color": "#ffffff",
+            }}
+          />
+        )}
+
+        {/* Railway Layer */}
+        {currentMode.dataKey === "transportPoints" && (
+          <Layer
+            id="railway-stations"
+            type="circle"
+            source="dynamic"
+            paint={{
+              "circle-radius": 6,
+              "circle-color": [
+                "match",
+                ["get", "line"],
+                "western",
+                RAIL_COLORS.western,
+                "central",
+                RAIL_COLORS.central,
+                "#ffffff",
+              ],
+            }}
+            onClick={(e) => {
+              const f = e.features[0];
+              setSelectedStation(f.properties.id);
+            }}
+          />
+        )}
+
+        {/* SELECTED STATION OUTER RING */}
+        {selectedPoint && currentMode.dataKey === "transportPoints" && (
+          <Layer
+            id="railway-selected-ring"
+            type="circle"
+            source="dynamic"
+            filter={["==", ["get", "id"], selectedPoint.properties.id]}
+            paint={{
+              "circle-radius": 12,
+              "circle-color": [
+                "match",
+                ["get", "line"],
+                "western",
+                RAIL_COLORS.western,
+                "central",
+                RAIL_COLORS.central,
+                "#ffffff",
+              ],
+              "circle-opacity": 0.9,
+            }}
+          />
+        )}
+
+        {/* SELECTED STATION WHITE CENTER */}
+        {selectedPoint && currentMode.dataKey === "transportPoints" && (
+          <Layer
+            id="railway-selected-center"
+            type="circle"
+            source="dynamic"
+            filter={["==", ["get", "id"], selectedPoint.properties.id]}
+            paint={{
+              "circle-radius": 5,
+              "circle-color": "#ffffff",
+            }}
+          />
+        )}
       </Source>
 
       {selectedPoint && (
         <Popup
           longitude={selectedPoint.geometry.coordinates[0]}
           latitude={selectedPoint.geometry.coordinates[1]}
-          closeOnClick={false}
           closeButton={false}
-          onClose={() => setSelectedPoint(null)}
           anchor="bottom"
-          offset={[0, -22]} // pushes tooltip upward from marker center
+          offset={[0, -22]}
         >
           <div className="bg-[#4F7DFF] text-white rounded-2xl px-4 py-2 shadow-xl text-center">
-            <div className="text-lg font-semibold leading-tight">
-              {selectedPoint.properties.name.split(" – ")[0]}
+            <div className="text-lg font-semibold">
+              {selectedPoint.properties.name}
             </div>
-            <div className="text-xs opacity-90">
-              {selectedPoint.properties.name.split(" – ")[1]}
-            </div>
+
+            {currentMode.dataKey !== "transportPoints" ? (
+              <div className="text-xs opacity-90">
+                {selectedPoint.properties.name.split(" – ")[1]}
+              </div>
+            ) : null}
           </div>
         </Popup>
       )}

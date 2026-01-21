@@ -142,7 +142,7 @@ const WaterLevelModel = () => {
       <p className="mb-2 text-white text-sm md:text-lg [@media(min-width:1700px)]:text-[20px] font-medium">
         Water Level for Mithi River
       </p>
-      <WaterLevelChart data={waterLevelData} />
+      <WaterLevelChart data={waterLevelData} xKey="time" />
     </>
   );
 };

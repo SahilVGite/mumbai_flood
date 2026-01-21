@@ -9,7 +9,7 @@ import {
   ReferenceLine,
 } from "recharts";
 
-const RainfallChart = ({ data }) => {
+const RainfallChart = ({ data, xKey }) => {
   const yTicks = [0, 15.5, 64.4, 115.5, 204.4, 250];
 
   return (
@@ -24,7 +24,7 @@ const RainfallChart = ({ data }) => {
           </defs>
 
           {/* X Axis */}
-          <XAxis dataKey="time" stroke="#777" tick={{ fill: "#aaa" }} label={{fontSize: 12}} />
+          <XAxis dataKey={xKey} stroke="#777" tick={{ fill: "#aaa", fontSize: 12 }} />
 
           {/* Y Axis with exact labels */}
           <YAxis
@@ -122,8 +122,8 @@ const RainfallChart = ({ data }) => {
                   y2="10"
                   gradientUnits="userSpaceOnUse"
                 >
-                  <stop stop-color="#13CCE1" />
-                  <stop offset="1" stop-color="#13CCE1" stop-opacity="0" />
+                  <stop stopColor="#13CCE1" />
+                  <stop offset="1" stopColor="#13CCE1" stopOpacity="0" />
                 </linearGradient>
               </defs>
             </svg>

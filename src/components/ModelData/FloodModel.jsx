@@ -115,7 +115,7 @@ const FloodModel = () => {
           (data from MCGM)
         </div>
       </div>
-      <RainfallChart data={floodHourlyData} />
+      <RainfallChart data={floodHourlyData} xKey="time" />
     </>
   );
 };

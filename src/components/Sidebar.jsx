@@ -17,10 +17,31 @@ const Sidebar = ({
   informative,
   pageTogglers,
 }) => {
+
+  const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth <= 1100);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsSmallScreen(window.innerWidth <= 1100);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
+    if (isSmallScreen) {
+      setSidebarOpen(false);
+    }
+  }, [isSmallScreen]);
+
   return (
     <>
       <div className="sidebar flex gap-4 [@media(min-width:1201px)]:rounded-r-xl w-full max-w-full [@media(min-width:1201px)]:max-w-fit h-auto [@media(min-width:1201px)]:h-full min-h-auto [@media(min-width:1201px)]:min-h-screen bg-(--black-80) [@media(max-width:1100px)]:backdrop-blur-[7.5px] pointer-events-auto [@media(min-width:1201px)]:flex-col items-center [@media(max-width:1100px)]:overflow-x-auto justify-start md:justify-center [@media(min-width:1201px)]:justify-between py-4 [@media(min-width:1201px)]:py-10 px-3 [@media(min-width:1700px)]:px-4 transition-all duration-300 ease-in-out relative z-30 [@media(max-width:1100px)]:shadow-[0px_-6px_12px_-2px_rgba(50,50,93,0.25),_0px_-3px_7px_-3px_rgba(0,0,0,0.3)]">
-        <div className={`sidebarToggle [@media(max-width:1100px)]:hidden ${sidebarOpen ? "w-full" : ""}`} onClick={() => setSidebarOpen(!sidebarOpen)}>
+        <div
+          className={`sidebarToggle [@media(max-width:1100px)]:hidden ${sidebarOpen ? "w-full" : ""}`}
+          onClick={() => setSidebarOpen(!sidebarOpen)}
+        >
           <SideBar
             className={`cursor-pointer transition-all duration-300 ease-in-out ${
               sidebarOpen ? "ml-auto" : ""
@@ -36,7 +57,10 @@ const Sidebar = ({
             >
               {({ isActive }) => (
                 <>
-                  <toggler.icon strokeColor={isActive ? "#fff" : "#8DADFF"} className="max-w-12 [@media(min-width:1700px)]:max-w-14 h-auto" />
+                  <toggler.icon
+                    strokeColor={isActive ? "#fff" : "#8DADFF"}
+                    className="max-w-12 [@media(min-width:1700px)]:max-w-14 h-auto"
+                  />
 
                   {sidebarOpen && (
                     <span
@@ -74,7 +98,10 @@ const Sidebar = ({
             >
               {({ isActive }) => (
                 <>
-                  <info.icon strokeColor={isActive ? "#fff" : "#8DADFF"} className="max-w-8 [@media(min-width:1700px)]:max-w-9 h-auto" />
+                  <info.icon
+                    strokeColor={isActive ? "#fff" : "#8DADFF"}
+                    className="max-w-8 [@media(min-width:1700px)]:max-w-9 h-auto"
+                  />
                   {sidebarOpen && (
                     <span
                       className={`font-medium text-sm mr-3 ${
