@@ -142,16 +142,6 @@ export const railwayStations = {
         {
             type: "Feature",
             properties: {
-                id: "matunga",
-                name: "Matunga",
-                line: "western",
-                order: 3,
-            },
-            geometry: { type: "Point", coordinates: [72.847249, 19.028571] },
-        },
-        {
-            type: "Feature",
-            properties: {
                 id: "dadar",
                 name: "Dadar",
                 line: "western",

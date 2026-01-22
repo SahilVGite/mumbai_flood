@@ -7,6 +7,8 @@ import RailwayIcon from "./RailwayIcon";
 import Rainfall from "./Rainfall";
 import WaterLevel from "./WaterLevel";
 import RoundLocation from "./RoundLocation";
+import ReportedIcon from "./ReportedIcon";
+import Twitter from "./Twitter";
 
 export{
     SideBar,
@@ -18,4 +20,6 @@ export{
     Rainfall,
     WaterLevel,
     RoundLocation,
+    ReportedIcon,
+    Twitter,
 }

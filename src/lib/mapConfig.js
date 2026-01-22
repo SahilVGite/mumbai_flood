@@ -3,4 +3,5 @@ export const MAP_MODES = {
   "/rainfall": { dataKey: "rainfallPoints" },
   "/water-level": { dataKey: "waterPoints" },
   "/transport-stress": { dataKey: "transportPoints" },
+  "/reported-floods": {  dataKey: "reportedFloods",},
 };

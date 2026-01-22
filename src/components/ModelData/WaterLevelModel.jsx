@@ -3,17 +3,8 @@ import WaterLevelChart from "../Charts/WaterLevelChart";
 import { WaterLevel as WaterLevelIcon, RoundLocation } from "@/assets/svg";
 import { ChevronDown } from "lucide-react";
 import { useMapContext } from "@/context/MapContext";
-import { waterPoints } from "@/components/MapView";
+import { waterPoints } from "../../data/waterPointsData";
 import { useOutletContext } from "react-router-dom";
-
-const floodHourlyData = [
-  { time: "04:00", observed: 40, forecast: 42 },
-  { time: "06:00", observed: 12, forecast: 15 },
-  { time: "08:00", observed: 55, forecast: 58 },
-  { time: "10:00", observed: 70, forecast: 65 },
-  { time: "12:00", observed: 50, forecast: 50 },
-  { time: "13:00", observed: null, forecast: 50 },
-];
 
 const waterLevelData = [
   { time: "00:00", level: 25 },
@@ -75,7 +66,7 @@ const WaterLevelModel = () => {
           strokeColor="#ffffff"
           className="max-w-9.5 md:max-w-9.8"
         />
-        <h2 className="text-[18px] md:text-[20px] [@media(min-width:1700px)]:text-2xl font-semibold">
+        <h2 className="text-lg md:text-[20px] [@media(min-width:1700px)]:text-2xl font-semibold">
           Water Level
         </h2>
       </div>

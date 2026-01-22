@@ -20,6 +20,7 @@ import path from "node:path";
 import RainfallModel from "./ModelData/RainfallModel";
 import WaterLevelModel from "./ModelData/WaterLevelModel";
 import TransportStressModel from "./ModelData/TransportStressModel";
+import ReportedFloodsModel from "./ModelData/ReportedFloodsModel";
 
 const UserInteractions = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -29,7 +30,7 @@ const UserInteractions = () => {
     { name: "Rainfall", icon: RainfallIcon, path: "/rainfall" },
     { name: "Water Level", icon: WaterLevelIcon, path: "/water-level" },
     { name: "Transport Stress", icon: RailwayIcon, path: "/transport-stress" },
-    { name: "Report Flood", icon: FloodReportIcon, path: "/report-flood" },
+    { name: "Reported Floods", icon: FloodReportIcon, path: "/reported-floods" },
   ];
 
   const informative = [
@@ -74,10 +75,8 @@ const UserInteractions = () => {
                   <Route index element={<FloodModel />} />
                   <Route path="/rainfall" element={<RainfallModel />} />
                   <Route path="/water-level" element={<WaterLevelModel />} />
-                  <Route
-                    path="/transport-stress"
-                    element={<TransportStressModel />}
-                  />
+                  <Route path="/transport-stress" element={<TransportStressModel />} />
+                  <Route path="/reported-floods" element={<ReportedFloodsModel />} />
                 </Route>
               </Routes>
               <div className="absolute left-2 [@media(min-width:1201px)]:left-[calc(100%+16px)] [@media(min-width:1700px)]:left-[calc(100%+32px)] bottom-[calc(100%+15px)] [@media(min-width:1201px)]:bottom-8 [@media(min-width:1700px)]:bottom-14">

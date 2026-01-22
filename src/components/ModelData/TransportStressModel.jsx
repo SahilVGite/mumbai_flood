@@ -5,15 +5,6 @@ import { ChevronDown } from "lucide-react";
 import { useMapContext } from "@/context/MapContext";
 import { railwayStations } from "@/data/railwayData";
 
-const floodHourlyData = [
-  { time: "04:00", observed: 40, forecast: 42 },
-  { time: "06:00", observed: 12, forecast: 15 },
-  { time: "08:00", observed: 55, forecast: 58 },
-  { time: "10:00", observed: 70, forecast: 65 },
-  { time: "12:00", observed: 50, forecast: 50 },
-  { time: "13:00", observed: null, forecast: 50 },
-];
-
 const TransportStressModel = () => {
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
@@ -61,7 +52,7 @@ const TransportStressModel = () => {
       {/* Header */}
       <div className="flex items-center">
         <RailwayIcon strokeColor="#ffffff" className="max-w-9.5 md:max-w-9.8" />
-        <h2 className="text-[18px] md:text-[20px] [@media(min-width:1700px)]:text-2xl font-semibold">
+        <h2 className="text-lg md:text-[20px] [@media(min-width:1700px)]:text-2xl font-semibold">
           Transport Stress (Railways)
         </h2>
       </div>
@@ -108,11 +99,11 @@ const TransportStressModel = () => {
 
       <div className="mb-8 flex items-stretch justify-between gap-6 *:w-full">
         <div className="text-center font-medium bg-black p-4 rounded-[8px]">
-          <p className="text-[#FF5F8D] text-[16px] [@media(min-width:1700px)]:text-[18px]">Central Railway Line</p>
+          <p className="text-[#FF5F8D] text-[16px] [@media(min-width:1700px)]:text-lg">Central Railway Line</p>
           <p className="text-[#A2A2AA] text-xs md:text-sm">Affected</p>
         </div>
         <div className="text-center font-medium bg-black p-4 rounded-[8px]">
-          <p className="text-[#FF5F8D] text-[16px] [@media(min-width:1700px)]:text-[18px]">Fast & Slow</p>
+          <p className="text-[#FF5F8D] text-[16px] [@media(min-width:1700px)]:text-lg">Fast & Slow</p>
           <p className="text-[#A2A2AA] text-xs md:text-sm">Trains Affected</p>
         </div>
       </div>
@@ -123,7 +114,7 @@ const TransportStressModel = () => {
         </p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
           <div className="bg-black py-2 md:py-4 px-1 md:px-2 rounded-lg text-center flex md:flex-col justify-between md:justify-center items-center [@media(max-width:767px)]:*:w-[33%]">
-            <p className="font-medium text-[10px] md:text-[14px] [@media(min-width:1700px)]:text-[18px] text-[#A2A2AA]">
+            <p className="font-medium text-[10px] md:text-[14px] [@media(min-width:1700px)]:text-lg text-[#A2A2AA]">
               Recovery Time
             </p>
             <p className="text-white font-medium text-sm md:text-[20px] [@media(min-width:1700px)]:text-2xl my-1">~35 min</p>
@@ -132,7 +123,7 @@ const TransportStressModel = () => {
             </p>
           </div>
           <div className="bg-black py-2 md:py-4 px-1 md:px-2 rounded-lg text-center flex md:flex-col justify-between md:justify-center items-center [@media(max-width:767px)]:*:w-[33%]">
-            <p className="font-medium text-[10px] md:text-[14px] [@media(min-width:1700px)]:text-[18px] text-[#A2A2AA]">
+            <p className="font-medium text-[10px] md:text-[14px] [@media(min-width:1700px)]:text-lg text-[#A2A2AA]">
               System Delay
             </p>
             <p className="text-white font-medium text-sm md:text-[20px] [@media(min-width:1700px)]:text-2xl my-1">4 min</p>
@@ -141,7 +132,7 @@ const TransportStressModel = () => {
             </p>
           </div>
           <div className="bg-black py-2 md:py-4 px-1 md:px-2 rounded-lg text-center flex md:flex-col justify-between md:justify-center items-center [@media(max-width:767px)]:*:w-[33%]">
-            <p className="font-medium text-[10px] md:text-[14px] [@media(min-width:1700px)]:text-[18px] text-[#A2A2AA]">
+            <p className="font-medium text-[10px] md:text-[14px] [@media(min-width:1700px)]:text-lg text-[#A2A2AA]">
               Rainfall Induced Delay
             </p>
             <p className="text-[#FF5F8D] font-medium text-sm md:text-[20px] [@media(min-width:1700px)]:text-2xl my-1">~45 min</p>

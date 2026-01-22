@@ -49,7 +49,7 @@ const FloodModel = () => {
       {/* Header */}
       <div className="flex items-center">
         <FloodModelIcon strokeColor="#ffffff" className="max-w-9.5 md:max-w-9.8" />
-        <h2 className="text-[18px] md:text-[20px] [@media(min-width:1700px)]:text-2xl font-semibold">Flood Model</h2>
+        <h2 className="text-lg md:text-[20px] [@media(min-width:1700px)]:text-2xl font-semibold">Flood Model</h2>
       </div>
 
       <div className="my-2.5 lg:my-4">

@@ -4,7 +4,7 @@ import { Rainfall as RainfallIcon } from "@/assets/svg";
 import { ChevronDown } from "lucide-react";
 
 import { useMapContext } from "@/context/MapContext";
-import { rainfallPoints } from "@/components/MapView";
+import { rainfallPoints } from "../../data/rainfallPointsData";
 import { useOutletContext } from "react-router-dom";
 
 const floodHourlyData = [
@@ -68,7 +68,7 @@ const RainfallModel = () => {
           strokeColor="#ffffff"
           className="max-w-9.5 md:max-w-9.8"
         />
-        <h2 className="text-[18px] md:text-[20px] [@media(min-width:1700px)]:text-2xl font-semibold">
+        <h2 className="text-lg md:text-[20px] [@media(min-width:1700px)]:text-2xl font-semibold">
           Rainfall
         </h2>
       </div>
