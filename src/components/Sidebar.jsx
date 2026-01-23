@@ -113,10 +113,10 @@ const Sidebar = ({
                   )}
                   {!sidebarOpen && (
                     <>
-                      <span className="absolute bg-black p-2 rounded-sm text-white font-medium capitalize opacity-0 group-hover:opacity-100 left-0 group-hover:left-18 top-1/2 -translate-y-1/2 z-4 text-xs whitespace-nowrap pointer-events-none transition-all">
+                      <span className="absolute bg-black p-2 rounded-sm text-white font-medium capitalize opacity-0 group-hover:opacity-100 left-0 group-hover:left-20 top-1/2 -translate-y-1/2 z-4 text-xs whitespace-nowrap pointer-events-none transition-all">
                         {info.name}
                       </span>
-                      <span className="absolute opacity-0 group-hover:opacity-100 left-0 group-hover:left-17 top-1/2 -translate-y-1/2 z-3 rotate-45 bg-black w-3 h-3 pointer-events-none transition-all" />
+                      <span className="absolute opacity-0 group-hover:opacity-100 left-0 group-hover:left-19 top-1/2 -translate-y-1/2 z-3 rotate-45 bg-black w-3 h-3 pointer-events-none transition-all" />
                     </>
                   )}
                 </>

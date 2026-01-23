@@ -1,11 +1,15 @@
-import { useEffect, useState } from "react";
 import RainfallChart from "../Charts/RainfallChart";
 import { Rainfall as RainfallIcon } from "@/assets/svg";
 import { ChevronDown } from "lucide-react";
-
-import { useMapContext } from "@/context/MapContext";
 import { rainfallPoints } from "../../data/rainfallPointsData";
+import { useMapContext } from "@/context/MapContext";
 import { useOutletContext } from "react-router-dom";
+
+import { useLiveDateTime } from "@/hooks/useLiveDateTime";
+import ModelHeader from "@/components/common/ModelHeader";
+import DateTimeBox from "@/components/common/DateTimeBox";
+import SelectField from "@/components/common/SelectField";
+import AlertBox from "@/components/common/AlertBox";
 
 const floodHourlyData = [
   { time: "04:00", observed: 140, forecast: 142 },
@@ -26,92 +30,37 @@ const dailyFloodData = [
 ];
 
 const RainfallModel = () => {
-  const [date, setDate] = useState("");
-  const [time, setTime] = useState("");
-
+  const { date, time } = useLiveDateTime();
   const { setSelectedStation } = useMapContext();
   const { setIsDataVisible } = useOutletContext();
 
-  useEffect(() => {
-    const updateDateTime = () => {
-      const now = new Date();
-
-      // Jun 15, 2025
-      const formattedDate = now.toLocaleDateString("en-US", {
-        month: "short",
-        day: "2-digit",
-        year: "numeric",
-      });
-
-      // 10:04
-      const formattedTime = now.toLocaleTimeString("en-US", {
-        hour: "2-digit",
-        minute: "2-digit",
-        hour12: false,
-      });
-
-      setDate(formattedDate);
-      setTime(formattedTime);
-    };
-
-    updateDateTime(); // initial call
-    const interval = setInterval(updateDateTime, 60000); // update every minute
-
-    return () => clearInterval(interval);
-  }, []);
-
   return (
     <>
-      {/* Header */}
-      <div className="flex items-center">
-        <RainfallIcon
-          strokeColor="#ffffff"
-          className="max-w-9.5 md:max-w-9.8"
-        />
-        <h2 className="text-lg md:text-[20px] [@media(min-width:1700px)]:text-2xl font-semibold">
-          Rainfall
-        </h2>
-      </div>
+      <ModelHeader title="Rainfall" Icon={RainfallIcon} />
 
       <div className="my-2.5 lg:my-4">
-        <form action="">
+        <form>
           <ul className="flex items-center justify-between gap-2">
-            <li className="relative md:w-[50%]">
-              <label htmlFor="">
-                <select
-                  onChange={(e) => {
-                    setSelectedStation(e.target.value);
-                    setIsDataVisible(false);
-                  }}
-                  className="bg-(--black-75) text-white text-[12px] md:text-[14px] [@media(min-width:1700px)]:text-[16px] font-medium outline-none border-none py-2 pl-4 pr-8 rounded-[8px] appearance-none w-full truncate"
-                >
-                  <option value="" selected disabled>
-                    Select Area
-                  </option>
-                  {rainfallPoints.features.map((f) => (
-                    <option key={f.properties.id} value={f.properties.id}>
-                      {f.properties.name}
-                    </option>
-                  ))}
-                </select>
-                <ChevronDown className="absolute w-4 h-4 right-2 top-1/2 transform -translate-y-1/2 pointer-events-auto text-[#8C8C8C]" />
-              </label>
-            </li>
-            <li>
-              <div className="bg-(--black-75) text-white font-medium text-[12px] md:text-[14px] [@media(min-width:1700px)]:text-[16px] py-2 px-5 lg:px-7 rounded-[8px] flex gap-3 md:gap-6 items-center whitespace-nowrap">
-                <span className="Date">{date}</span>
-                <span className="Time">{time}</span>
-              </div>
-            </li>
+            <SelectField
+              placeholder="Select Area"
+              options={rainfallPoints.features.map((f) => ({
+                value: f.properties.id,
+                label: f.properties.name,
+              }))}
+              onChange={(e) => {
+                setSelectedStation(e.target.value);
+                setIsDataVisible(false);
+              }}
+            />
+            <DateTimeBox date={date} time={time} />
           </ul>
         </form>
       </div>
 
-      {/* Alert */}
-      <div className="bg-(--red-30) text-white text-[12px] md:text-[14px] [@media(min-width:1700px)]:text-[16px] px-5 py-4 rounded-lg mb-4 [@media(min-width:1700px)]:mb-8">
+      <AlertBox color="red">
         Heavy rainfall expected over the next 3 days. Orange alert in effect.
         Stay updated for further information.
-      </div>
+      </AlertBox>
 
       <div>
         <p className="mb-2 text-white text-sm md:text-lg [@media(min-width:1700px)]:text-[20px] font-medium">
@@ -122,9 +71,9 @@ const RainfallModel = () => {
 
       <div className="mt-6">
         <div className="flex items-center flex-wrap md:flex-nowrap gap-2 mb-2">
-          <h3 className="text-white text-sm md:text-lg [@media(min-width:1700px)]:text-[20px] font-medium flex items-center gap-2 flex-wrap md:flex-nowrap">
-            Observed Hourly Rainfall (Today) -{" "}
-            <span className="font-medium text-xs md:text-sm">
+          <h3 className="text-white text-sm md:text-lg [@media(min-width:1700px)]:text-[20px] font-medium">
+            Observed Hourly Rainfall (Today) –
+            <span className="font-medium text-xs md:text-sm ml-1">
               1 hr interval
             </span>
           </h3>
@@ -132,6 +81,7 @@ const RainfallModel = () => {
             (data from MCGM)
           </div>
         </div>
+
         <RainfallChart data={floodHourlyData} xKey="time" />
       </div>
     </>
