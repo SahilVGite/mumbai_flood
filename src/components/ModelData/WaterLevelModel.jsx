@@ -54,10 +54,10 @@ const WaterLevelModel = () => {
         </form>
       </div>
 
-      <AlertBox color="blue">
+      <p className="text-[#A2A2AA] text-[12px] md:text-[14px] [@media(min-width:1700px)]:text-[16px] mb-4 [@media(min-width:1700px)]:mb-8">
         Patare Chawl, Swami Vivekananda Rd, near DCB Bank, Fish Market Area,
         Navneeth Colony, Andheri West, Mumbai, Maharashtra 400058, India
-      </AlertBox>
+      </p>
 
       <p className="mb-2 text-white text-sm md:text-lg [@media(min-width:1700px)]:text-[20px] font-medium">
         Average Water Level

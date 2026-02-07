@@ -5,13 +5,17 @@ import SponserIcons from "./components/SponserIcons";
 import UserInteractions from "./components/UserInteractions";
 import MapView from "./components/MapView";
 import { MapProvider } from "./context/MapContext";
+import { Routes, Route } from "react-router-dom";
+import ReportFloodForm from "./components/ReportFloodForm";
 
 function App() {
   return (
     <MapProvider>
       <Router>
         <Suspense
-          fallback={<div className="p-8 text-center text-gray-600">Loading...</div>}
+          fallback={
+            <div className="p-8 text-center text-gray-600">Loading...</div>
+          }
         >
           <UserInteractions />
 
@@ -20,6 +24,9 @@ function App() {
               <MapView />
             </Card>
           </div>
+          <Routes>
+            <Route path="/report-flood" element={<ReportFloodForm />} />
+          </Routes>
 
           <SponserIcons />
         </Suspense>

@@ -9,6 +9,10 @@ import WaterLevel from "./WaterLevel";
 import RoundLocation from "./RoundLocation";
 import ReportedIcon from "./ReportedIcon";
 import Twitter from "./Twitter";
+import AnkleHeight from "./AnkleHeight";
+import KneeHeight from "./KneeHeight";
+import WaistHeight from "./WaistHeight";
+import NeckNAbove from "./NeckNAbove";
 
 export{
     SideBar,

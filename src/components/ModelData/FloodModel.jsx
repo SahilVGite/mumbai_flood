@@ -30,8 +30,22 @@ const FloodModel = () => {
       </div>
 
       <AlertBox>
-        Moderate rainfall expected over the next 3 hrs. Water logging might happen.
+        Moderate rainfall expected over the next 3 hrs. Water logging might happen in some areas.
       </AlertBox>
+
+      <div className="mb-4 [@media(min-width:1700px)]:mb-8">
+        <p className="mb-2 text-white text-sm md:text-lg [@media(min-width:1700px)]:text-[20px] font-medium">Flood Severity</p>
+        <div className="flex items-center justify-center rounded-2xl overflow-hidden">
+          <span className="w-full h-4 bg-[#54CEFF]"></span>
+          <span className="w-full h-4 bg-[#029EFD]"></span>
+          <span className="w-full h-4 bg-[#105FCD]"></span>
+        </div>
+        <div className="flex items-center justify-center mt-2">
+          <span className="w-full text-white text-[12px] md:text-[14px] [@media(min-width:1700px)]:text-[16px] font-medium text-center">Low</span>
+          <span className="w-full text-white text-[12px] md:text-[14px] [@media(min-width:1700px)]:text-[16px] font-medium text-center">Moderate</span>
+          <span className="w-full text-white text-[12px] md:text-[14px] [@media(min-width:1700px)]:text-[16px] font-medium text-center">High</span>
+        </div>
+      </div>
 
       <RainfallChart data={floodHourlyData} xKey="time" />
     </>

@@ -1,6 +1,6 @@
 import { SideBar } from "@/assets/svg";
 import React, { useEffect, useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import {
   FloodModel as FloodModelIcon,
   Rainfall as RainfallIcon,
@@ -21,8 +21,13 @@ import RainfallModel from "./ModelData/RainfallModel";
 import WaterLevelModel from "./ModelData/WaterLevelModel";
 import TransportStressModel from "./ModelData/TransportStressModel";
 import ReportedFloodsModel from "./ModelData/ReportedFloodsModel";
+import ReportFloodForm from "./ReportFloodForm";
 
 const UserInteractions = () => {
+
+  const location = useLocation();
+  const isReportFlood = location.pathname === "/report-flood";
+
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const pageTogglers = [
@@ -65,31 +70,35 @@ const UserInteractions = () => {
             pageTogglers={pageTogglers}
             informative={informative}
           />
-          <div className={`fixed [@media(min-width:1201px)]:absolute top-2 [@media(min-width:1201px)]:top-4 bg-(--blue) text-white font-bold text-lg [@media(min-width:1700px)]:text-2xl p-2.5 w-auto [@media(min-width:1201px)]:w-full [@media(min-width:1201px)]:max-w-140 [@media(min-width:1700px)]:max-w-187.5 text-center rounded-[12px] transition-all duration-300 ease-in-out [@media(max-width:1100px)]:inset-x-2 ${sidebarOpen ? "[@media(min-width:1201px)]:left-54 [@media(min-width:1700px)]:left-61.5" : "[@media(min-width:1201px)]:left-22 [@media(min-width:1700px)]:left-30"}`}>
-            Mumbai Flood Experiment
-          </div>
-          <div className={`NextToSidebar absolute [@media(min-width:1201px)]:top-1/2 [@media(min-width:1201px)]:-translate-y-1/2 w-full transition-all duration-300 ease-in-out [@media(max-width:1100px)]:left-0 [@media(max-width:1100px)]:bottom-0 ${sidebarOpen ? "[@media(min-width:1201px)]:left-54 [@media(min-width:1700px)]:left-61.5" : "[@media(min-width:1201px)]:left-22 [@media(min-width:1700px)]:left-30"}`} >
-            <div className="relative w-full h-auto [@media(min-width:1201px)]:max-w-140 [@media(min-width:1700px)]:max-w-187.5">
-              <Routes>
-                <Route element={<ModelData />}>
-                  <Route index element={<FloodModel />} />
-                  <Route path="/rainfall" element={<RainfallModel />} />
-                  <Route path="/water-level" element={<WaterLevelModel />} />
-                  <Route path="/transport-stress" element={<TransportStressModel />} />
-                  <Route path="/reported-floods" element={<ReportedFloodsModel />} />
-                </Route>
-              </Routes>
-              <div className="absolute left-2 [@media(min-width:1201px)]:left-[calc(100%+16px)] [@media(min-width:1700px)]:left-[calc(100%+32px)] bottom-[calc(100%+15px)] [@media(min-width:1201px)]:bottom-8 [@media(min-width:1700px)]:bottom-14">
-                <RainfallForecast RainfallForecastData={RainfallForecastData} />
-              </div>
-              <div className="[@media(min-width:1201px)]:hidden absolute bottom-[calc(100%+15px)] right-2 md:right-4 z-10">
-                <ReportCard />
+          {!isReportFlood && (
+            <>
+            <div className={`fixed [@media(min-width:1201px)]:absolute top-2 [@media(min-width:1201px)]:top-4 bg-(--blue) text-white font-bold text-lg [@media(min-width:1700px)]:text-2xl p-2.5 w-auto [@media(min-width:1201px)]:w-full [@media(min-width:1201px)]:max-w-140 [@media(min-width:1700px)]:max-w-187.5 text-center rounded-[12px] transition-all duration-300 ease-in-out [@media(max-width:1100px)]:inset-x-2 ${sidebarOpen ? "[@media(min-width:1201px)]:left-54 [@media(min-width:1700px)]:left-61.5" : "[@media(min-width:1201px)]:left-22 [@media(min-width:1700px)]:left-30"}`}>
+              Mumbai Flood Experiment
+            </div>
+            <div className={`NextToSidebar absolute [@media(min-width:1201px)]:top-1/2 [@media(min-width:1201px)]:-translate-y-1/2 w-full transition-all duration-300 ease-in-out [@media(max-width:1100px)]:left-0 [@media(max-width:1100px)]:bottom-0 ${sidebarOpen ? "[@media(min-width:1201px)]:left-54 [@media(min-width:1700px)]:left-61.5" : "[@media(min-width:1201px)]:left-22 [@media(min-width:1700px)]:left-30"}`} >
+              <div className="relative w-full h-auto [@media(min-width:1201px)]:max-w-140 [@media(min-width:1700px)]:max-w-187.5">
+                <Routes>
+                  <Route element={<ModelData />}>
+                    <Route index element={<FloodModel />} />
+                    <Route path="/rainfall" element={<RainfallModel />} />
+                    <Route path="/water-level" element={<WaterLevelModel />} />
+                    <Route path="/transport-stress" element={<TransportStressModel />} />
+                    <Route path="/reported-floods" element={<ReportedFloodsModel />} />
+                  </Route>
+                </Routes>
+                <div className="absolute left-2 [@media(min-width:1201px)]:left-[calc(100%+16px)] [@media(min-width:1700px)]:left-[calc(100%+32px)] bottom-[calc(100%+15px)] [@media(min-width:1201px)]:bottom-8 [@media(min-width:1700px)]:bottom-14">
+                  <RainfallForecast RainfallForecastData={RainfallForecastData} />
+                </div>
+                <div className="[@media(min-width:1201px)]:hidden absolute bottom-[calc(100%+15px)] right-2 md:right-4 z-10">
+                  <ReportCard />
+                </div>
               </div>
             </div>
-          </div>
-          <div className="[@media(max-width:1100px)]:hidden fixed top-4 [@media(min-width:1700px)]:top-8 right-4 [@media(min-width:1700px)]:right-8 z-10">
-            <ReportCard />
-          </div>
+            <div className="[@media(max-width:1100px)]:hidden fixed top-4 [@media(min-width:1700px)]:top-8 right-4 [@media(min-width:1700px)]:right-8 z-10">
+              <ReportCard />
+            </div>
+          </>
+          )}
         </div>
       </div>
     </>
